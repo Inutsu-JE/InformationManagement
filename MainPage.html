@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,28 +16,37 @@
         </ul>
     </nav>
     <main>
-        <h1>
-            Dashboard
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search...">
-                <button onclick="searchData()">Search</button>
-                <button onclick="insertData()">Insert</button>
+        <div class="content">
+            <div class="main-dashboard">
+                <h1>
+                    Dashboard
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                        <button onclick="searchData()">Search</button>
+                        <button onclick="insertData()">Insert</button>
+                    </div>
+                </h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Department</th>
+                            <th>Project</th>
+                            <th>Task</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTable">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
             </div>
-        </h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee</th>
-                    <th>Department</th>
-                    <th>Project</th>
-                    <th>Task</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="dataTable">
-                <!-- Dynamic rows will be inserted here -->
-            </tbody>
-        </table>
+        </div>
+        <div class="right-panel" id="rightPanel">
+            <button id="hideButton" onclick="toggleRightPanel()">Hide Panel</button>
+            <h2>Right Panel</h2>
+            <p>Additional content goes here.</p>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>
