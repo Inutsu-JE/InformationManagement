@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Employee</a></li>
+            <li><a href="#">Department</a></li>
+            <li><a href="#">Project</a></li>
+            <li><a href="#">Task</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>
+            Dashboard
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button onclick="searchData()">Search</button>
+                <button onclick="insertData()">Insert</button>
+            </div>
+        </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Department</th>
+                    <th>Project</th>
+                    <th>Task</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+                <!-- Dynamic rows will be inserted here -->
+            </tbody>
+        </table>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

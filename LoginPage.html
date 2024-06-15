@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .image-container {
+            width: 70%;
+            height: 100%;
+            background-image: url('/mnt/data/test1.png'); /* Path to your image */
+            background-size: cover;
+            background-position: center;
+        }
+        .login-container {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            align-items: center;
+        }
+        .login-form img {
+            width: 150px; /* Adjust the size of the logo */
+            margin-bottom: 20px;
+        }
+        .login-form h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .login-form h2 {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .login-form input {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+        .forgot-password {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container"></div>
+        <div class="login-container">
+            <form class="login-form" onsubmit="login(event)">
+                <h1>Jumbo Hotdog</h1>
+                <h2>Information Management System</h2>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button type="submit">LOGIN</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function login(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Replace these with your actual username and password check
+            const validUsername = 'admin';
+            const validPassword = 'admin';
+
+            if (username === validUsername && password === validPassword) {
+                window.location.href = 'MainPage.html';
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+    </script>
+</body>
+</html>
