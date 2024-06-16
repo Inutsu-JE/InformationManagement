@@ -46,11 +46,18 @@
             </div>
         </main>
     </div>
-    <div class="right-panel" id="rightPanel">
-        <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-right"></i></button>
+    <div class="right-panel hidden" id="rightPanel">
+        <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <h2>Right Panel</h2>
-        <p>Additional content goes here.</p>
+        <div class="form-container">
+            <input type="text" id="employeeInput" placeholder="Employee">
+            <input type="text" id="departmentInput" placeholder="Department">
+            <input type="text" id="projectInput" placeholder="Project">
+            <input type="text" id="taskInput" placeholder="Task">
+            <button id="saveButton" onclick="saveData()">Save</button>
+        </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

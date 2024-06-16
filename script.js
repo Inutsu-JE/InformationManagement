@@ -35,8 +35,8 @@ function searchData() {
 
 function insertData() {
     // Implement insert functionality
-    addData('Alice Brown', 'Finance', 'Audit', 'Review');   // Should add this new entry
-    loadData();
+    toggleRightPanel();
+    // loadData();
     
 }
 
@@ -72,4 +72,25 @@ function toggleRightPanel() {
     const rightPanel = document.getElementById('rightPanel');
     rightPanel.classList.toggle('hidden');
 }
+
+function saveData() {
+    let employee = document.getElementById('employeeInput').value;
+    let department = document.getElementById('departmentInput').value;
+    let project = document.getElementById('projectInput').value;
+    let task = document.getElementById('taskInput').value;
+
+    if (employee && department && project && task) {
+        addData(employee, department, project, task);
+        loadData();
+        toggleRightPanel(); // Hide the right panel after saving data
+        // Clear the form fields
+        document.getElementById('employeeInput').value = '';
+        document.getElementById('departmentInput').value = '';
+        document.getElementById('projectInput').value = '';
+        document.getElementById('taskInput').value = '';
+    } else {
+        alert("Please fill in all fields.");
+    }
+}
+
 
