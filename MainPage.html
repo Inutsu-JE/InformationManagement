@@ -1,45 +1,61 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Employee</a></li>
-            <li><a href="#">Department</a></li>
-            <li><a href="#">Project</a></li>
-            <li><a href="#">Task</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h1>
-            Dashboard
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search...">
-                <button onclick="searchData()">Search</button>
-                <button onclick="insertData()">Insert</button>
+    <div class="container" id="mainContainer">
+        <nav>
+            <ul>
+                <li><a href="#">Employee</a></li>
+                <li><a href="#">Department</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Task</a></li>
+            </ul>
+        </nav>
+        <main>
+            <div class="content">
+                <div class="main-dashboard">
+                    <h1>
+                        Dashboard
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Search...">
+                            <button onclick="searchData()">Search</button>
+                            <button onclick="insertData()">Insert</button>
+                        </div>
+                    </h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Department</th>
+                                <th>Project</th>
+                                <th>Task</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee</th>
-                    <th>Department</th>
-                    <th>Project</th>
-                    <th>Task</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="dataTable">
-                <!-- Dynamic rows will be inserted here -->
-            </tbody>
-        </table>
-    </main>
+        </main>
+    </div>
+    <div class="right-panel hidden" id="rightPanel">
+        <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+        <div class="form-container" id="addForm">
+            <input type="text" id="employeeInput" placeholder="Employee">
+            <input type="text" id="departmentInput" placeholder="Department">
+            <input type="text" id="projectInput" placeholder="Project">
+            <input type="text" id="taskInput" placeholder="Task">
+            <button id="saveButton" onclick="saveData()">Save</button>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

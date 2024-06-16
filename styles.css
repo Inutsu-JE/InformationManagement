@@ -1,12 +1,37 @@
- body {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "nav"
+        "main";
+    height: 100%;
+    width: 100%;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.container.with-right-panel {
+    grid-template-columns: 1fr 200px;
+    grid-template-areas:
+        "nav nav"
+        "main right-panel";
 }
 
 nav {
+    grid-area: nav;
     background-color: #333;
     overflow: hidden;
+    z-index: 1;
+    position: relative;
 }
 
 nav ul {
@@ -34,7 +59,90 @@ nav ul li a:hover {
 }
 
 main {
+    grid-area: main;
     padding: 20px;
+    overflow-y: auto;
+}
+
+.content {
+    display: block;
+}
+
+.main-dashboard {
+    margin-right: 20px;
+}
+
+.right-panel {
+    grid-area: right-panel;
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.right-panel.hidden {
+    display: none;
+}
+
+.right-panel button#hideButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: pointer;
+}
+
+.right-panel .form-container {
+    margin-top: 20px;
+}
+
+.right-panel .form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.right-panel .form-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.right-panel .form-container button:hover {
+    background-color: #0056b3;
+}
+
+.right-panel button#saveButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.right-panel button#saveButton:hover {
+    background-color: #0056b3;
 }
 
 h1 {

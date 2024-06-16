@@ -15,29 +15,51 @@
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
-        .container {
-            display: flex;
+        .image-container {
             width: 100%;
             height: 100%;
-        }
-        .image-container {
-            width: 70%;
-            height: 100%;
-            background-image: url('/mnt/data/test1.png'); /* Path to your image */
-            background-size: cover;
-            background-position: center;
-        }
-        .login-container {
-            width: 30%;
+            background-image: linear-gradient(45deg,
+            #F72585,
+            #B5179E,
+            #7209B7,
+            #560BAD,
+            #480CA8,
+            #3A0CA3,
+            #3F37C9,
+            #4361EE,
+            #4895EF,
+            #4CC9F0); /* Gradient background */
+            background-size: 600% auto; /* Adjusted background-size for smooth animation */
+            animation: color 12s ease-in-out infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
+        }
+        @keyframes color {
+            0% {
+                background-position: 0% 50%; /* Starting position */
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%; /* Ending position */
+            }
+        }
+        .login-container {
+            width: 30%;
+            background-color: rgba(255, 255, 255, 0.85); /* White with 80% opacity */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for better aesthetics */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd; /* Border for better aesthetics */
         }
         .login-form {
             display: flex;
             flex-direction: column;
-            width: 80%;
+            width: 100%;
             align-items: center;
         }
         .login-form img {
@@ -47,10 +69,12 @@
         .login-form h1 {
             font-size: 24px;
             margin-bottom: 10px;
+            color: #333; /* Adjusted color for aesthetics */
         }
         .login-form h2 {
             font-size: 18px;
             margin-bottom: 30px;
+            color: #555; /* Adjusted color for aesthetics */
         }
         .login-form input {
             width: 100%;
@@ -60,9 +84,23 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .login-form .form-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+        .login-form .forgot-password {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .login-form .forgot-password:hover {
+            text-decoration: underline;
+        }
         .login-form button {
-            padding: 10px;
-            font-size: 16px;
+            padding: 10px 20px;
+            font-size: 14px;
             background-color: #007BFF;
             color: white;
             border: none;
@@ -72,22 +110,20 @@
         .login-form button:hover {
             background-color: #0056b3;
         }
-        .forgot-password {
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-container"></div>
+    <div class="image-container">
         <div class="login-container">
             <form class="login-form" onsubmit="login(event)">
                 <h1>Jumbo Hotdog</h1>
                 <h2>Information Management System</h2>
                 <input type="text" id="username" placeholder="Username" required>
                 <input type="password" id="password" placeholder="Password" required>
-                <a href="#" class="forgot-password">Forgot Password?</a>
-                <button type="submit">LOGIN</button>
+                <div class="form-actions">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit">LOGIN</button>
+                </div>
             </form>
         </div>
     </div>
