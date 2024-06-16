@@ -35,7 +35,6 @@
                                 <th>Department</th>
                                 <th>Project</th>
                                 <th>Task</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="dataTable">
@@ -48,8 +47,7 @@
     </div>
     <div class="right-panel hidden" id="rightPanel">
         <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
-        <h2>Right Panel</h2>
-        <div class="form-container">
+        <div class="form-container" id="addForm">
             <input type="text" id="employeeInput" placeholder="Employee">
             <input type="text" id="departmentInput" placeholder="Department">
             <input type="text" id="projectInput" placeholder="Project">

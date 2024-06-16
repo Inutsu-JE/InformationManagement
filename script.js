@@ -9,7 +9,6 @@ let data = [
 ];
 
 function loadData() {
-    // Clear existing table rows
     let dataTable = document.getElementById('dataTable');
     dataTable.innerHTML = "";  // Clear all rows
 
@@ -20,13 +19,27 @@ function loadData() {
         row.insertCell(1).innerText = item.department;
         row.insertCell(2).innerText = item.project;
         row.insertCell(3).innerText = item.task;
-        let actionsCell = row.insertCell(4);
-        actionsCell.innerHTML = `<button onclick="editRow(${index})">Edit</button><button onclick="deleteRow(${index})">Delete</button>`;
+        // Add click event listener to each row
+        row.addEventListener('click', () => displayRowData(index));
     });
 }
 
+function displayRowData(index) {
+    // Display the data of the clicked row in the right panel
+    let rowData = data[index];
+    document.getElementById('rightPanel').innerHTML = `
+        <h2>${rowData.employee}</h2>
+        <p><strong>Department:</strong> ${rowData.department}</p>
+        <p><strong>Project:</strong> ${rowData.project}</p>
+        <p><strong>Task:</strong> ${rowData.task}</p>
+        <div class="actions">
+            <button onclick="editRow(${index})">Edit</button>
+            <button onclick="deleteRow(${index})">Delete</button>
+        </div>
+    `;
+    toggleRightPanel();
+}
 
-//MAIN FUNCTIONS
 function searchData() {
     // Implement search functionality
     let searchInput = document.getElementById('searchInput').value;
@@ -35,9 +48,17 @@ function searchData() {
 
 function insertData() {
     // Implement insert functionality
+    // Show the form in the right panel
+    document.getElementById('rightPanel').innerHTML = `
+        <div class="form-container" id="addForm">
+            <input type="text" id="employeeInput" placeholder="Employee">
+            <input type="text" id="departmentInput" placeholder="Department">
+            <input type="text" id="projectInput" placeholder="Project">
+            <input type="text" id="taskInput" placeholder="Task">
+            <button id="saveButton" onclick="saveData()">Save</button>
+        </div>
+    `;
     toggleRightPanel();
-    // loadData();
-    
 }
 
 function editRow(index) {
@@ -48,24 +69,6 @@ function editRow(index) {
 function deleteRow(index) {
     // Implement delete functionality
     alert('Delete row: ' + index);
-}
-
-
-
-//SUPPORT FUNCTIONS
-function addData(employee, department, project, task) {
-    // Check if the entry already exists to avoid duplicates
-    for (let entry of data) {
-        if (entry.employee === employee && entry.department === department && 
-            entry.project === project && entry.task === task) {
-            console.log("This entry already exists.");
-            return;
-        }
-    }
-    
-    // Add new entry if it doesn't exist
-    data.push({employee, department, project, task});
-    console.log("New entry added.");
 }
 
 function toggleRightPanel() {
@@ -93,4 +96,17 @@ function saveData() {
     }
 }
 
-
+function addData(employee, department, project, task) {
+    // Check if the entry already exists to avoid duplicates
+    for (let entry of data) {
+        if (entry.employee === employee && entry.department === department && 
+            entry.project === project && entry.task === task) {
+            console.log("This entry already exists.");
+            return;
+        }
+    }
+    
+    // Add new entry if it doesn't exist
+    data.push({employee, department, project, task});
+    console.log("New entry added.");
+}
