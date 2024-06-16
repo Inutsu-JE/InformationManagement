@@ -2,11 +2,36 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "nav"
+        "main";
+    height: 100%;
+    width: 100%;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.container.with-right-panel {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "nav nav"
+        "main right-panel";
 }
 
 nav {
+    grid-area: nav;
     background-color: #333;
     overflow: hidden;
+    z-index: 1;
     position: relative;
 }
 
@@ -35,8 +60,9 @@ nav ul li a:hover {
 }
 
 main {
+    grid-area: main;
     padding: 20px;
-    padding-right: 220px; /* Space for the fixed right panel */
+    overflow-y: auto;
 }
 
 .content {
@@ -48,17 +74,15 @@ main {
 }
 
 .right-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
+    grid-area: right-panel;
     width: 200px;
-    height: 100%;
     background-color: #fff;
     padding: 20px;
     border-left: 1px solid #ccc;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .right-panel.hidden {
@@ -66,19 +90,24 @@ main {
 }
 
 .right-panel button {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    background-color: transparent;
+    color: #333;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 .right-panel button:hover {
-    background-color: #0056b3;
+    color: #007BFF;
+}
+
+.right-panel button i {
+    font-size: 20px;
 }
 
 h1 {

@@ -35,7 +35,6 @@ function searchData() {
 
 function insertData() {
     // Implement insert functionality
-    alert('Insert new data');
     addData('Alice Brown', 'Finance', 'Audit', 'Review');   // Should add this new entry
     loadData();
     
