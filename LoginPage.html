@@ -48,13 +48,17 @@
         }
         .login-container {
             width: 30%;
-            background-color: rgba(255, 255, 255, 0.85); /* White with 80% opacity */
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for better aesthetics */
+            background: linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.20));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px; /* Increased padding for more space */
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #ddd; /* Border for better aesthetics */
+            border: 1px solid #dddddd3d;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.37);
+            position: relative; /* Ensure the form actions can be positioned */
         }
         .login-form {
             display: flex;
@@ -69,46 +73,62 @@
         .login-form h1 {
             font-size: 24px;
             margin-bottom: 10px;
-            color: #333; /* Adjusted color for aesthetics */
+            color: black; /* Adjusted color for aesthetics */
         }
         .login-form h2 {
             font-size: 18px;
             margin-bottom: 30px;
-            color: #555; /* Adjusted color for aesthetics */
+            color: black; /* Adjusted color for aesthetics */
+        }
+        .login-form .form-actions {
+            display: flex;
+            justify-content: flex-end; /* Align button to the right */
+            width: 100%;
+        }
+        .login-form button {
+            width: 100px; /* Fixed width */
+            padding: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: whitesmoke;
+            color: black;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-left: auto; /* Ensure it stays to the right */
+        }
+        .login-form button:hover {
+            background-color: transparent;
+            border: 1px solid whitesmoke;
+            color: whitesmoke;
         }
         .login-form input {
             width: 100%;
             margin-bottom: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 10px; /* Increase padding for better aesthetics */
+            font-size: 12px;
+            text-align: center;
+            color: black;
+            outline: none;
+            border-radius: 40px;
+            background-color: transparent; /* Background color with opacity */
+            border: 1px solid black;
+            transition: border-color 0.3s ease; /* Smooth transition for border color */
         }
-        .login-form .form-actions {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            align-items: center;
+        input {
+            text-align: center;
         }
-        .login-form .forgot-password {
-            color: #007BFF;
-            text-decoration: none;
-            font-size: 14px;
+        .login-form input:focus {
+            border-color: #007BFF; /* Change border color on focus */
+            outline: none; /* Remove default outline */
         }
-        .login-form .forgot-password:hover {
-            text-decoration: underline;
+        .login-form input.invalid {
+            border-color: red; /* Red border for invalid inputs */
         }
-        .login-form button {
-            padding: 10px 20px;
-            font-size: 14px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-form button:hover {
-            background-color: #0056b3;
+        ::placeholder {
+            text-align: center;
+            font-size: 12px;
+            color: black;
         }
     </style>
 </head>
@@ -116,12 +136,13 @@
     <div class="image-container">
         <div class="login-container">
             <form class="login-form" onsubmit="login(event)">
-                <h1>Jumbo Hotdog</h1>
-                <h2>Information Management System</h2>
+                <h1>LOGO here</h1>
+                <h2 id="welcome-text">Welcome!</h2>
+
                 <input type="text" id="username" placeholder="Username" required>
                 <input type="password" id="password" placeholder="Password" required>
+
                 <div class="form-actions">
-                    <a href="#" class="forgot-password">Forgot Password?</a>
                     <button type="submit">LOGIN</button>
                 </div>
             </form>
@@ -130,8 +151,11 @@
     <script>
         function login(event) {
             event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const welcomeText = document.getElementById('welcome-text');
+            const username = usernameInput.value;
+            const password = passwordInput.value;
 
             // Replace these with your actual username and password check
             const validUsername = 'admin';
@@ -140,7 +164,18 @@
             if (username === validUsername && password === validPassword) {
                 window.location.href = 'MainPage.html';
             } else {
-                alert('Invalid username or password');
+                // Set the placeholder values to the input values
+                usernameInput.value = '';
+                passwordInput.value = '';
+                usernameInput.placeholder = "Username";
+                passwordInput.placeholder = "Password";
+                
+                // Add the 'invalid' class to change the border color
+                usernameInput.classList.add('invalid');
+                passwordInput.classList.add('invalid');
+                
+                // Change the welcome text to "Invalid Account"
+                welcomeText.textContent = 'Invalid Account';
             }
         }
     </script>
