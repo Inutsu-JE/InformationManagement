@@ -11,14 +11,15 @@
     <div class="container" id="mainContainer">
         <nav>
             <ul>
-                <li><a href="#">Employee</a></li>
-                <li><a href="#">Department</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Task</a></li>
+                <li><a href="#" id="dashboardButton">Dashboard</a></li>
+                <li><a href="#" id="employeeButton">Employee</a></li>
+                <li><a href="#" id="departmentButton">Department</a></li>
+                <li><a href="#" id="projectButton">Project</a></li>
+                <li><a href="#" id="taskButton">Task</a></li>
             </ul>
         </nav>
-        <main>
-            <div class="content">
+        <main id="mainContent">
+            <div class="content" id="dashboardContent">
                 <div class="main-dashboard">
                     <h1>
                         Dashboard
@@ -31,10 +32,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Employee</th>
-                                <th>Department</th>
                                 <th>Project</th>
-                                <th>Task</th>
+                                <th>Department</th>
+                                <th>Start-Date</th>
+                                <th>End-Date</th>
                             </tr>
                         </thead>
                         <tbody id="dataTable">
@@ -43,9 +44,116 @@
                     </table>
                 </div>
             </div>
+            <div class="content" id="employeeContent" style="display: none;">
+                <div class="main-dashboard">
+                    <h1>
+                        Employees
+                        <div class="search-container">
+                            <input type="text" id="employeeSearchInput" placeholder="Search...">
+                            <button onclick="searchEmployeeData()">Search</button>
+                            <button onclick="insertEmployeeData()">Insert</button>
+                        </div>
+                    </h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Department ID</th>
+                                <th>Position</th>
+                                <th>Hire Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeDataTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="content" id="departmentContent" style="display: none;">
+                <div class="main-dashboard">
+                    <h1>
+                        Departments
+                        <div class="search-container">
+                            <input type="text" id="departmentSearchInput" placeholder="Search...">
+                            <button onclick="searchDepartmentData()">Search</button>
+                            <button onclick="insertDepartmentData()">Insert</button>
+                        </div>
+                    </h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Department ID</th>
+                                <th>Name</th>
+                                <th>Manager (Employee ID)</th>
+                                <th>Location (Building Number)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="departmentDataTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="content" id="projectContent" style="display: none;">
+                <div class="main-dashboard">
+                    <h1>
+                        Projects
+                        <div class="search-container">
+                            <input type="text" id="projectSearchInput" placeholder="Search...">
+                            <button onclick="searchProjectData()">Search</button>
+                            <button onclick="insertProjectData()">Insert</button>
+                        </div>
+                    </h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project ID</th>
+                                <th>Name</th>
+                                <th>Department ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectDataTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="content" id="taskContent" style="display: none;">
+                <div class="main-dashboard">
+                    <h1>
+                        Tasks
+                        <div class="search-container">
+                            <input type="text" id="taskSearchInput" placeholder="Search...">
+                            <button onclick="searchTaskData()">Search</button>
+                            <button onclick="insertTaskData()">Insert</button>
+                        </div>
+                    </h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Task ID</th>
+                                <th>Project ID</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskDataTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </main>
     </div>
-    <div class="right-panel hidden" id="rightPanel">
+    <div class="right-panel hidden" id="rightPanel" tabindex="-1">
+        <!-- Ensure there are focusable elements inside -->
         <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <div class="form-container" id="addForm">
             <input type="text" id="employeeInput" placeholder="Employee">
