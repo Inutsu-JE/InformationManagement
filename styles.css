@@ -73,12 +73,20 @@ main {
 }
 
 .right-panel {
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.24);
+    /* border-radius: 16px; */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 1);
+    
     grid-area: right-panel;
     width: 250px;
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 20px;
-    border-left: 1px solid #ccc;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    /* border-left: 1px solid #ccc; */
+    /* box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); */
     overflow-y: auto;
     position: relative;
     transition: transform 0.3s ease;
@@ -90,8 +98,8 @@ main {
 
 .right-panel button#hideButton {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 5px;
+    left: 0px; /* Positioning it on the upper left corner */
     width: 30px;
     height: 30px;
     font-size: 18px;
@@ -99,10 +107,16 @@ main {
     color: #333;
     border: none;
     cursor: pointer;
+    z-index: 2; /* Ensures it's above the panel content */
 }
+
+
+
 
 .right-panel .form-container {
     margin-top: 20px;
+    position: relative; /* Ensures the button is positioned relative to the container */
+    padding-bottom: 50px; /* Ensure there is enough space for the button */
 }
 
 .right-panel .form-container input {
@@ -115,6 +129,9 @@ main {
 }
 
 .right-panel .form-container button {
+    position: absolute;
+    bottom: 10px;
+    Right: 0px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007BFF;

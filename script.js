@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
     loadData();
     addNavBarEventListeners(); // Call the function to add event listeners to the nav bar buttons
+    // var rightPanel = document.getElementById('rightPanel');
+    // rightPanel.classList.toggle('hidden');
 
+    
 
 });
 
@@ -63,6 +66,8 @@ function displayTaskRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = taskData[index];
     document.getElementById('rightPanel').innerHTML = `
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+        <h2>${rowData.employee}</h2>
         <h2>${rowData.description}</h2>
         <p><strong>Task ID:</strong> ${rowData.task_id}</p>
         <p><strong>Project ID:</strong> ${rowData.project_id}</p>
@@ -75,7 +80,11 @@ function displayTaskRowData(index) {
             <button onclick="deleteTaskRow(${index})">Delete</button>
         </div>
     `;
-    toggleRightPanel();
+     // Check if #rightPanel is hidden before toggling
+     let rightPanel = document.getElementById('rightPanel');
+     if (rightPanel.classList.contains('hidden')) {
+         toggleRightPanel();
+     }
 }
 
 function searchTaskData() {
@@ -88,7 +97,9 @@ function insertTaskData() {
     // Implement insert task functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <div class="form-container" id="addForm">
+            
             <input type="text" id="taskIdInput" placeholder="Task ID">
             <input type="text" id="projectIdInput" placeholder="Project ID">
             <input type="text" id="taskDescriptionInput" placeholder="Description">
@@ -98,7 +109,11 @@ function insertTaskData() {
             <button id="saveTaskButton" onclick="saveTaskData()">Save</button>
         </div>
     `;
-    toggleRightPanel();
+     // Check if #rightPanel is hidden before toggling
+     let rightPanel = document.getElementById('rightPanel');
+     if (rightPanel.classList.contains('hidden')) {
+         toggleRightPanel();
+     }
 }
 
 function saveTaskData() {
@@ -171,6 +186,8 @@ function displayProjectRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = projectData[index];
     document.getElementById('rightPanel').innerHTML = `
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+        <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Project ID:</strong> ${rowData.project_id}</p>
         <p><strong>Department ID:</strong> ${rowData.department_id}</p>
@@ -181,7 +198,11 @@ function displayProjectRowData(index) {
             <button onclick="deleteProjectRow(${index})">Delete</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function searchProjectData() {
@@ -194,7 +215,9 @@ function insertProjectData() {
     // Implement insert project functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <div class="form-container" id="addForm">
+           
             <input type="text" id="projectIdInput" placeholder="Project ID">
             <input type="text" id="projectNameInput" placeholder="Name">
             <input type="text" id="projectDepartmentIdInput" placeholder="Department ID">
@@ -203,7 +226,11 @@ function insertProjectData() {
             <button id="saveProjectButton" onclick="saveProjectData()">Save</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function saveProjectData() {
@@ -296,6 +323,7 @@ function displayRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = data[index];
     document.getElementById('rightPanel').innerHTML = `
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <h2>${rowData.employee}</h2>
         <p><strong>Department:</strong> ${rowData.department}</p>
         <p><strong>Project:</strong> ${rowData.project}</p>
@@ -305,13 +333,19 @@ function displayRowData(index) {
             <button onclick="deleteRow(${index})">Delete</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function displayEmployeeRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = employeeData[index];
     document.getElementById('rightPanel').innerHTML = `
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+        <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Employee ID:</strong> ${rowData.employee_id}</p>
         <p><strong>Department ID:</strong> ${rowData.department_id}</p>
@@ -322,13 +356,19 @@ function displayEmployeeRowData(index) {
             <button onclick="deleteEmployeeRow(${index})">Delete</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function displayDepartmentRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = departmentData[index];
     document.getElementById('rightPanel').innerHTML = `
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+        <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Department ID:</strong> ${rowData.department_id}</p>
         <p><strong>Manager (Employee ID):</strong> ${rowData.manager}</p>
@@ -338,7 +378,11 @@ function displayDepartmentRowData(index) {
             <button onclick="deleteDepartmentRow(${index})">Delete</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function searchData() {
@@ -371,14 +415,20 @@ function insertData() {
             <button id="saveButton" onclick="saveData()">Save</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function insertEmployeeData() {
     // Implement insert employee functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <div class="form-container" id="addForm">
+            
             <input type="text" id="employeeIdInput" placeholder="Employee ID">
             <input type="text" id="employeeNameInput" placeholder="Name">
             <input type="text" id="employeeDepartmentIdInput" placeholder="Department ID">
@@ -387,14 +437,20 @@ function insertEmployeeData() {
             <button id="saveEmployeeButton" onclick="saveEmployeeData()">Save</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function insertDepartmentData() {
     // Implement insert department functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
         <div class="form-container" id="addForm">
+            
             <input type="text" id="departmentIdInput" placeholder="Department ID">
             <input type="text" id="departmentNameInput" placeholder="Name">
             <input type="text" id="departmentManagerInput" placeholder="Manager (Employee ID)">
@@ -402,7 +458,11 @@ function insertDepartmentData() {
             <button id="saveDepartmentButton" onclick="saveDepartmentData()">Save</button>
         </div>
     `;
-    toggleRightPanel();
+    // Check if #rightPanel is hidden before toggling
+    let rightPanel = document.getElementById('rightPanel');
+    if (rightPanel.classList.contains('hidden')) {
+        toggleRightPanel();
+    }
 }
 
 function editRow(index) {
