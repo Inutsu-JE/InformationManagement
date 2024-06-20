@@ -633,4 +633,3 @@ function displaySection(sectionId) {
         section.style.display = 'none';
     });
     document.getElementById(sectionId).style.display = 'block';
-}
