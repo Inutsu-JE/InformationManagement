@@ -66,7 +66,7 @@ function displayTaskRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = taskData[index];
     document.getElementById('rightPanel').innerHTML = `
-     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <h2>${rowData.employee}</h2>
         <h2>${rowData.description}</h2>
         <p><strong>Task ID:</strong> ${rowData.task_id}</p>
@@ -97,7 +97,7 @@ function insertTaskData() {
     // Implement insert task functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
-    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <div class="form-container" id="addForm">
             
             <input type="text" id="taskIdInput" placeholder="Task ID">
@@ -186,7 +186,7 @@ function displayProjectRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = projectData[index];
     document.getElementById('rightPanel').innerHTML = `
-     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Project ID:</strong> ${rowData.project_id}</p>
@@ -215,7 +215,7 @@ function insertProjectData() {
     // Implement insert project functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
-    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <div class="form-container" id="addForm">
            
             <input type="text" id="projectIdInput" placeholder="Project ID">
@@ -313,7 +313,7 @@ function displayRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = data[index];
     document.getElementById('rightPanel').innerHTML = `
-    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <h2>${rowData.employee}</h2>
         <p><strong>Department:</strong> ${rowData.department}</p>
         <p><strong>Project:</strong> ${rowData.project}</p>
@@ -334,7 +334,7 @@ function displayEmployeeRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = employeeData[index];
     document.getElementById('rightPanel').innerHTML = `
-     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Employee ID:</strong> ${rowData.employee_id}</p>
@@ -357,7 +357,7 @@ function displayDepartmentRowData(index) {
     // Display the data of the clicked row in the right panel
     let rowData = departmentData[index];
     document.getElementById('rightPanel').innerHTML = `
-     <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+     <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <h2>${rowData.employee}</h2>
         <h2>${rowData.name}</h2>
         <p><strong>Department ID:</strong> ${rowData.department_id}</p>
@@ -398,7 +398,7 @@ function insertEmployeeData() {
     // Implement insert employee functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
-    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
         <div class="form-container" id="addForm">
             
             <input type="text" id="employeeIdInput" placeholder="Employee ID">
@@ -420,7 +420,7 @@ function insertDepartmentData() {
     // Implement insert department functionality
     // Show the form in the right panel
     document.getElementById('rightPanel').innerHTML = `
-    <button id="hideButton" onclick="toggleRightPanel()"><i class="fas fa-arrow-left"></i></button>
+    <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></i></button>
         <div class="form-container" id="addForm">
             
             <input type="text" id="departmentIdInput" placeholder="Department ID">
