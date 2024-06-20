@@ -8,58 +8,87 @@ body {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "nav"
-        "main";
-    height: 100%;
-    width: 100%;
-    transition: grid-template-columns 0.3s ease;
-}
-
-.container.with-right-panel {
-    grid-template-columns: 1fr 200px;
-    grid-template-areas:
-        "nav nav"
-        "main right-panel";
-}
-
-nav {
-    grid-area: nav;
-    background-color: #333;
-    overflow: hidden;
-    z-index: 1;
-    position: relative;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: flex-end; /* Aligns the items to the right */
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
 }
 
-nav ul li {
-    display: inline;
+nav#sidebar {
+    width: 245px;
+    background: #333;
+    color: #fff;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
+.sidebar-header {
+    padding: 20px;
     text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
+    font-size: 1.5em;
+    background: #444;
+    width: 84%;
+}
+#sidebarSearchInput {
+    width: calc(100% - 30px);
+    margin: 10px 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 10px solid #ddd;
 }
 
-nav ul li a:hover {
+#sidebar button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    margin: 10px 15px;
+}
+
+#sidebar button:hover {
     background-color: #575757;
 }
 
+ul.components {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+ul.components li {
+    width: 100%;
+}
+
+ul.components li a {
+    padding: 15px;
+    font-size: 1.1em;
+    color: #ddd;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.components li a:hover {
+    background: #575757;
+    color: #fff;
+}
+
+ul.components li input {
+    width: calc(100% - 30px);
+    margin: 10px 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
 main {
-    grid-area: main;
+    flex: 1;
     padding: 20px;
     overflow-y: auto;
 }
@@ -72,97 +101,7 @@ main {
     margin-right: 20px;
 }
 
-.right-panel {
-    /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.24);
-    /* border-radius: 16px; */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 1);
-    
-    grid-area: right-panel;
-    width: 250px;
-    /* background-color: #fff; */
-    padding: 20px;
-    /* border-left: 1px solid #ccc; */
-    /* box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); */
-    overflow-y: auto;
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.right-panel.hidden {
-    display: none;
-}
-
-.right-panel button#hideButton {
-    position: absolute;
-    top: 5px;
-    left: 0px; /* Positioning it on the upper left corner */
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-    background-color: transparent;
-    color: #333;
-    border: none;
-    cursor: pointer;
-    z-index: 2; /* Ensures it's above the panel content */
-}
-
-
-
-
-.right-panel .form-container {
-    margin-top: 20px;
-    position: relative; /* Ensures the button is positioned relative to the container */
-    padding-bottom: 50px; /* Ensure there is enough space for the button */
-}
-
-.right-panel .form-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.right-panel .form-container button {
-    position: absolute;
-    bottom: 10px;
-    Right: 0px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.right-panel .form-container button:hover {
-    background-color: #0056b3;
-}
-
-.right-panel button#saveButton {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.right-panel button#saveButton:hover {
-    background-color: #0056b3;
-}
-
-h1 {
+.main-dashboard h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -173,25 +112,24 @@ h1 {
     gap: 10px;
 }
 
-.search-container input[type="text"] {
+.search-container input {
     padding: 10px;
-    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 200px;
 }
 
 .search-container button {
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
     border: none;
     border-radius: 5px;
+    background-color: #333;
+    color: white;
     cursor: pointer;
 }
 
 .search-container button:hover {
-    background-color: #0056b3;
+    background-color: #575757;
 }
 
 table {
@@ -205,29 +143,77 @@ table, th, td {
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px;
     text-align: left;
 }
 
-.actions button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    font-size: 14px;
-    background-color: #007BFF;
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.right-panel {
+    background: rgba(0, 0, 0, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 1);
+    
+    grid-area: right-panel;
+    width: 250px;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.right-panel.hidden {
+    display: none;
+}
+
+.right-panel button#hideButton {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.actions button:hover {
-    background-color: #0056b3;
-}
-
-.actions .delete {
-    background-color: #dc3545;
-}
-
-.actions .delete:hover {
-    background-color: #c82333;
+.form-container button:hover {
+    background-color: #575757;
 }
