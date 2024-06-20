@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,35 +24,26 @@
                 <li>
                     <hr>
                 </li>
-                <li><button onclick="toggleRightPanel()">Insert</button></li>
+                
             </ul>
         </nav>
         <main id="mainContent">
             <div class="content" id="dashboardContent">
                 <div class="main-dashboard">
-                    <h1>
-                        Dashboard
-                    </h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Employee Name</th>
-                                <th>Department</th>
-                                <th>Project</th>
-                                <th>Task</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataTable">
-                            <!-- Dynamic rows will be inserted here -->
-                        </tbody>
-                    </table>
+                    
+                    
                 </div>
             </div>
+            
+            
             <div class="content" id="employeeContent" style="display: none;">
                 <div class="main-dashboard">
-                    <h1>
-                        Employees
-                    </h1>
+                    <div class="header">
+                        <h1>Employees</h1>
+                        <div class="button-container">
+                            <button onclick="insertEmployeeData()" class="insert-button">Insert</button>
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -71,9 +62,12 @@
             </div>
             <div class="content" id="departmentContent" style="display: none;">
                 <div class="main-dashboard">
-                    <h1>
-                        Departments
-                    </h1>
+                    <div class="header">
+                        <h1>Departments</h1>
+                        <div class="button-container">
+                            <button onclick="insertDepartmentData()" class="insert-button">Insert</button>
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -91,9 +85,12 @@
             </div>
             <div class="content" id="projectContent" style="display: none;">
                 <div class="main-dashboard">
-                    <h1>
-                        Projects
-                    </h1>
+                    <div class="header">
+                        <h1>Projects</h1>
+                        <div class="button-container">
+                            <button onclick="insertProjectData()" class="insert-button">Insert</button>
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -113,9 +110,12 @@
             
             <div class="content" id="taskContent" style="display: none;">
                 <div class="main-dashboard">
-                    <h1>
-                        Tasks
-                    </h1>
+                    <div class="header">
+                        <h1>Tasks</h1>
+                        <div class="button-container">
+                            <button onclick="insertTaskData()" class="insert-button">Insert</button>
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -134,6 +134,7 @@
                 </div>
             </div>
         </main>
+        
     </div>
     <div class="right-panel hidden" id="rightPanel" tabindex="-1">
         <!-- Ensure there are focusable elements inside -->
