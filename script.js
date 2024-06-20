@@ -271,20 +271,10 @@ function addProjectData(project_id, name, department_id, start_date, end_date) {
 
 
 function loadData() {
-    let dataTable = document.getElementById('dataTable');
-    dataTable.innerHTML = "";  // Clear all rows
-
-    // Load the data into the table
-    data.forEach((item, index) => {
-        let row = dataTable.insertRow();
-        row.insertCell(0).innerText = item.employee;
-        row.insertCell(1).innerText = item.department;
-        row.insertCell(2).innerText = item.project;
-        row.insertCell(3).innerText = item.task;
-        // Add click event listener to each row
-        row.addEventListener('click', () => displayRowData(index));
-    });
+    
 }
+
+
 
 function loadEmployeeData() {
     let dataTable = document.getElementById('employeeDataTable');
@@ -403,24 +393,6 @@ function searchDepartmentData() {
     alert('Search for: ' + searchInput);
 }
 
-function insertData() {
-    // Implement insert functionality
-    // Show the form in the right panel
-    document.getElementById('rightPanel').innerHTML = `
-        <div class="form-container" id="addForm">
-            <input type="text" id="employeeInput" placeholder="Employee">
-            <input type="text" id="departmentInput" placeholder="Department">
-            <input type="text" id="projectInput" placeholder="Project">
-            <input type="text" id="taskInput" placeholder="Task">
-            <button id="saveButton" onclick="saveData()">Save</button>
-        </div>
-    `;
-    // Check if #rightPanel is hidden before toggling
-    let rightPanel = document.getElementById('rightPanel');
-    if (rightPanel.classList.contains('hidden')) {
-        toggleRightPanel();
-    }
-}
 
 function insertEmployeeData() {
     // Implement insert employee functionality
@@ -493,26 +465,6 @@ function deleteEmployeeRow(index) {
 function deleteDepartmentRow(index) {
     // Implement delete department functionality
     alert('Delete department row: ' + index);
-}
-
-function saveData() {
-    let employee = document.getElementById('employeeInput').value;
-    let department = document.getElementById('departmentInput').value;
-    let project = document.getElementById('projectInput').value;
-    let task = document.getElementById('taskInput').value;
-
-    if (employee && department && project && task) {
-        addData(employee, department, project, task);
-        loadData();
-        toggleRightPanel(); // Hide the right panel after saving data
-        // Clear the form fields
-        document.getElementById('employeeInput').value = '';
-        document.getElementById('departmentInput').value = '';
-        document.getElementById('projectInput').value = '';
-        document.getElementById('taskInput').value = '';
-    } else {
-        alert("Please fill in all fields.");
-    }
 }
 
 function saveEmployeeData() {
@@ -632,4 +584,10 @@ function displaySection(sectionId) {
     sections.forEach(section => {
         section.style.display = 'none';
     });
-    document.getElementById(sectionId).style.display = 'block';
+    if (sectionId === 'dashboardContent') {
+        // Display custom content for dashboard
+        document.getElementById(sectionId).innerHTML = "<h2>nigga</h2>";
+    } else {
+        document.getElementById(sectionId).style.display = 'block';
+    }
+}

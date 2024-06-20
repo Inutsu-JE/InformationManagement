@@ -1,10 +1,15 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Monaco, Consolas, monospace; /* Update font-family */
     background-color: #f0f0f0;
     display: flex;
     height: 100vh;
     overflow: hidden;
+}
+
+/* Add Courier New font to all text content */
+.container, nav#sidebar, .sidebar-header, #sidebarSearchInput, #sidebar button, ul.components li a, ul.components li input, main, .content, .main-dashboard h1, .search-container input, .search-container button, table, th, td, .right-panel, .right-panel button#hideButton, .right-panel .form-container input, .right-panel .form-container button, .header, .button-container, .insert-button {
+    font-family: Monaco, Consolas, monospace;
 }
 
 .container {
@@ -91,6 +96,7 @@ main {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    background-color: #F1F2F6;
 }
 
 .content {
@@ -135,7 +141,9 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 0px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow added */
 }
 
 table, th, td {
@@ -145,10 +153,11 @@ table, th, td {
 th, td {
     padding: 10px;
     text-align: left;
+    border: 1px solid #ccc; /* Ensure border consistency */
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: white;
 }
 
 tbody tr:nth-child(even) {
@@ -160,18 +169,24 @@ tbody tr:hover {
 }
 
 .right-panel {
-    background: rgba(0, 0, 0, 0.24);
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 1);
-    
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
+    border: 1px solid rgba(183, 134, 134, 0.27);
+        
     grid-area: right-panel;
     width: 250px;
+    height: 100%;
+
     padding: 20px;
-    overflow-y: auto;
-    position: relative;
-    transition: transform 0.3s ease;
+
+    position: fixed; /* Fixed position to overlap the main container */
+    top: 0;
+    right: 0;
+    transition: transform 1s ease;
 }
 
 .right-panel.hidden {
@@ -192,21 +207,27 @@ tbody tr:hover {
     z-index: 2;
 }
 
-.form-container {
+.right-panel .form-container {
     margin-top: 20px;
+    position: relative; /* Ensures the button is positioned relative to the container */
+    padding-bottom: 50px; /* Ensure there is enough space for the button */
 }
 
-.form-container input {
+.right-panel .form-container input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.form-container button {
-    width: 100%;
-    padding: 10px;
+.right-panel .form-container button {
+    position: absolute;
+    bottom: 10px;
+    Right: 0px;
+    padding: 10px 20px;
+    font-size: 16px;
     background-color: #333;
     color: white;
     border: none;
@@ -214,6 +235,27 @@ tbody tr:hover {
     cursor: pointer;
 }
 
+.right-panel .form-container button:hover {
+    background-color: #0056b3;
+}
+
 .form-container button:hover {
     background-color: #575757;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow added */
+}
+
+.button-container {
+    align-self: flex-end; /* Aligns the button to the right */
+    margin-top: 10px; /* Adds some space between the title and the button */
+}
+
+.insert-button {
+    /* Add any additional styling for the button here */
 }
