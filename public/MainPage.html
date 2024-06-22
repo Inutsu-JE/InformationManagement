@@ -13,8 +13,8 @@
             <div class="sidebar-header">
                 <h3>JumboHotdog</h3>
             </div>
-                    <input type="text" id="searchInput" placeholder="Search...">
-                    <button onclick="sidebarSearchData()">Search</button>
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">Search</button>
             <ul class="list-unstyled components">
                 <li><a href="#" id="dashboardButton"><i class="fa-solid fa-chart-line" style="color: #ffffff;"></i> Dashboard</a></li>
                 <li><a href="#" id="employeeButton"><i class="fas fa-user"></i> Employee</a></li>
@@ -24,7 +24,6 @@
                 <li>
                     <hr>
                 </li>
-                
             </ul>
         </nav>
         <main id="mainContent">
@@ -57,14 +56,8 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="SearchResults"></div> <!-- Container for search results -->
             </div>
-            
-            
-            
-            
-            
-            
-            
             <div class="content" id="employeeContent" style="display: none;">
                 <div class="main-dashboard">
                     <div class="header">
@@ -136,7 +129,6 @@
                     </table>
                 </div>
             </div>
-            
             <div class="content" id="taskContent" style="display: none;">
                 <div class="main-dashboard">
                     <div class="header">
@@ -163,7 +155,6 @@
                 </div>
             </div>
         </main>
-        
     </div>
     <div class="right-panel hidden" id="rightPanel" tabindex="-1">
         <!-- Ensure there are focusable elements inside -->
@@ -176,7 +167,6 @@
             <button id="saveButton" onclick="saveData()">Save</button>
         </div>
     </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
