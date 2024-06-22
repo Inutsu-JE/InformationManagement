@@ -29,11 +29,40 @@
         </nav>
         <main id="mainContent">
             <div class="content" id="dashboardContent">
-                <div class="main-dashboard">
-                    
-                    
+                <!-- Form for adding data -->
+                <div class="add-form">
+                    <h2>Add New Entry</h2>
+                    <select id="categorySelect">
+                        <option value="employee">Employee</option>
+                        <option value="department">Department</option>
+                        <option value="project">Project</option>
+                        <option value="task">Task</option>
+                    </select>
+                    <button onclick="insertData()">Add</button>
+                </div>
+            
+                <!-- Display section for added data -->
+                <div class="display-section">
+                    <h2>Added Data</h2>
+                    <table id="addedDataTable">
+                        <thead>
+                            <tr>
+                                <th>NumberID</th>
+                                <th>Type</th>
+                                <th>ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="addedDataBody">
+                            <!-- Data will be dynamically inserted here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
+            
+            
+            
+            
+            
             
             
             <div class="content" id="employeeContent" style="display: none;">
