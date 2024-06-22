@@ -397,3 +397,79 @@ app.delete('/tasks/:id', (req, res) => {
     });
 });
 
+app.post('/data', (req, res) => {
+    const { type, type_id } = req.body;
+
+    // Example SQL query to insert data into database
+    const sql = 'INSERT INTO data (type, type_id) VALUES (?, ?)';
+    const values = [type, type_id];
+
+    // Execute the query
+    connection.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            res.status(500).send('Error inserting data into database');
+            return;
+        }
+
+        const insertedDataId = result.insertId; // Get the last inserted ID
+
+        console.log('Data inserted successfully:', result);
+        res.status(200).json({
+            message: 'Data inserted successfully',
+            data_id: insertedDataId  // Send the inserted data_id in the response
+        });
+    });
+});
+app.get('/data', (req, res) => {
+    const query = 'SELECT * FROM data'; // Example SQL query to fetch all data
+
+    connection.query(query, (error, results, fields) => {
+        if (error) {
+            console.error('Error fetching data:', error);
+            res.status(500).json({ error: 'Failed to fetch data' });
+            return;
+        }
+
+        res.json(results); // Send data as JSON response
+    });
+});
+app.get('/data/:id', (req, res) => {
+    const data_id = req.params.id;
+
+    const query = 'SELECT * FROM data WHERE data_id = ?';
+    connection.query(query, [data_id], (error, results) => {
+        if (error) {
+            console.error('Error fetching data:', error);
+            res.status(500).json({ error: 'Failed to fetch data' });
+            return;
+        }
+        if (results.length === 0) {
+            res.status(404).json({ error: 'Data not found' });
+            return;
+        }
+        res.json(results[0]); // Send data as JSON response
+    });
+});
+app.put('/data/:id', (req, res) => {
+    const data_id = req.params.id;
+    const { type, type_id } = req.body;
+    const dataToUpdate = { type, type_id };
+
+    connection.query('UPDATE data SET ? WHERE data_id = ?', [dataToUpdate, data_id], (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).send(`Data with ID ${data_id} updated successfully`);
+    });
+});
+app.delete('/data/:id', (req, res) => {
+    const data_id = req.params.id;
+
+    connection.query('DELETE FROM data WHERE data_id = ?', [data_id], (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.status(200).send(`Data with ID ${data_id} deleted successfully`);
+    });
+});

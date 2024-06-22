@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
-    // loadData();
+    loadData();
+    // loadDashboardData();
     addNavBarEventListeners(); // Call the function to add event listeners to the nav bar buttons
     // var rightPanel = document.getElementById('rightPanel');
     // rightPanel.classList.toggle('hidden');
@@ -932,7 +933,10 @@ async function saveDepartmentData() {
             if (!response.ok) {
                 throw new Error('Failed to add department');
             }
+            const responseData = await response.json();
+            const lastID = responseData.department_id; // Assuming the server responds with task_id
 
+            displayAddedData(lastID);
             // Optionally, you can also reload all department data
             loadDepartmentData();
 
@@ -996,6 +1000,7 @@ function searchDepartmentData() {
 function addNavBarEventListeners() {
     document.getElementById('dashboardButton').addEventListener('click', () => {
         displaySection('dashboardContent');
+        loadData();
     });
 
     document.getElementById('employeeButton').addEventListener('click', () => {
@@ -1049,20 +1054,92 @@ async function insertData() {
 let nextNumberID = 1; // Initialize NumberID counter
 
 // Function to add data based on selected category
+// Example usage after adding new data
 async function displayAddedData(id) {
     const category = document.getElementById('categorySelect').value;
 
-    // Add row to the table
-    const addedDataBody = document.getElementById('addedDataBody');
-    addedDataBody.innerHTML += `
-        <tr>
-            <td>${nextNumberID}</td>
-            <td>${category}</td>
-            <td>${id}</td>
-        </tr>
-    `;
+    try {
+        const response = await fetch('http://localhost:3000/data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: category,
+                type_id: id,
+            }),
+        });
 
-    nextNumberID++; // Increment NumberID counter
+        if (!response.ok) {
+            throw new Error('Failed to add data');
+        }
+
+        // Optionally, handle response from server
+        const insertedData = await response.json();
+        console.log('Data added successfully:', insertedData);
+
+        // Reload data in the table after successful addition
+        loadData();
+
+    } catch (error) {
+        console.error('Error adding data:', error);
+        alert('Failed to add data. Please try again.');
+    }
 }
+
+async function loadData() {
+    const dataTable = document.getElementById('addedDataBody');
+    dataTable.innerHTML = "";  // Clear all rows
+
+    try {
+        const response = await fetch('http://localhost:3000/data');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+
+        // Load the data into the table
+        data.forEach((item, index) => {
+            let row = dataTable.insertRow();
+            row.insertCell(0).innerText = item.data_id;
+            row.insertCell(1).innerText = item.type;
+            row.insertCell(2).innerText = item.type_id;
+
+            // Add click event listener to each row
+            row.addEventListener('click', () => redirectToDetailsPage(item.type, item.type_id));
+        });
+
+        console.log("Data Loaded");
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error appropriately (e.g., display error message)
+    }
+}
+
+
+function redirectToDetailsPage(type, id) {
+    switch (type) {
+        case 'employee':
+            displaySection('employeeContent');
+            loadEmployeeData(); // Load employee data when the Employee section is displayed
+            break;
+        case 'department':
+            displaySection('departmentContent');
+            loadDepartmentData(); // Load department data when the Department section is displayed
+            break;
+        case 'project':
+            displaySection('projectContent');
+            loadProjectData(); // Load project data when the Project section is displayed
+            break;
+        case 'task':
+            displaySection('taskContent');
+            loadTaskData(); // Load task data when the Task section is displayed
+            break;
+        default:
+            console.error(`Unsupported type: ${type}`);
+    }
+}
+
+
 
 
