@@ -473,3 +473,30 @@ app.delete('/data/:id', (req, res) => {
         res.status(200).send(`Data with ID ${data_id} deleted successfully`);
     });
 });
+
+// Define a search route to search across all relevant tables
+app.get('/search/:searchTerm', (req, res) => {
+    const searchTerm = req.params.searchTerm;
+    
+    // Example SQL query to search across tables
+    const query = `
+        SELECT name, position, 'employee' AS type FROM employees WHERE name LIKE ?
+        UNION
+        SELECT name, manager AS position, 'department' AS type FROM departments WHERE name LIKE ?
+        UNION
+        SELECT name, '' AS position, 'project' AS type FROM projects WHERE name LIKE ?
+        UNION
+        SELECT description AS name, 'task' AS position, 'task' AS type FROM tasks WHERE description LIKE ?
+    `;
+    const values = [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`];
+    
+    // Execute the query
+    connection.query(query, values, (error, results) => {
+        if (error) {
+            console.error('Error searching:', error);
+            res.status(500).json({ error: 'Failed to search' });
+            return;
+        }
+        res.json(results); // Send search results as JSON response
+    });
+});

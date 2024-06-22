@@ -1,14 +1,54 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
     loadData();
-    // loadDashboardData();
-    addNavBarEventListeners(); // Call the function to add event listeners to the nav bar buttons
-    // var rightPanel = document.getElementById('rightPanel');
-    // rightPanel.classList.toggle('hidden');
 
+    addNavBarEventListeners(); // Call the function to add event listeners to the nav bar buttons
+  
+
+    // Attach the searchData function to the click event of the search button
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', searchData);
+    } else {
+        console.error('Search button element not found.');
+    }
     
 
 });
+
+function searchData() {
+    let searchInputValue = document.getElementById('searchInput').value.trim();
+
+    if (searchInputValue !== '') {
+        const encodedSearchTerm = encodeURIComponent(searchInputValue);
+
+        fetch(`http://localhost:3000/search/${encodedSearchTerm}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Search results:', data);
+                if (data.length === 0) {
+                    alert('No results found.');
+                } else {
+                    // Redirect to details page based on the first item found
+                    const firstItem = data[0];
+                    redirectToDetailsPage(firstItem.type, firstItem.id);
+                }
+            })
+            .catch(error => {
+                console.error('Error searching:', error);
+                alert('Failed to search. Please try again later.');
+            });
+    } else {
+        alert('Please enter a search term.');
+    }
+}
+
+
 
 function toggleRightPanel() {
     var rightPanel = document.getElementById('rightPanel');
@@ -1096,11 +1136,16 @@ async function loadData() {
         if (!response.ok) {
             throw new Error('Failed to fetch data');
         }
-        const data = await response.json();
+        let data = await response.json();
+
+        // Reverse the data array to load from last to first
+        data.reverse();
 
         // Load the data into the table
         data.forEach((item, index) => {
             let row = dataTable.insertRow();
+
+            // Insert cells in reverse order
             row.insertCell(0).innerText = item.data_id;
             row.insertCell(1).innerText = item.type;
             row.insertCell(2).innerText = item.type_id;
@@ -1109,12 +1154,13 @@ async function loadData() {
             row.addEventListener('click', () => redirectToDetailsPage(item.type, item.type_id));
         });
 
-        console.log("Data Loaded");
+        console.log("Data Loaded in reverse order");
     } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error appropriately (e.g., display error message)
     }
 }
+
 
 
 function redirectToDetailsPage(type, id) {
@@ -1139,6 +1185,7 @@ function redirectToDetailsPage(type, id) {
             console.error(`Unsupported type: ${type}`);
     }
 }
+
 
 
 
