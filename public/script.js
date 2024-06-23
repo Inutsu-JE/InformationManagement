@@ -1166,19 +1166,19 @@ async function loadData() {
 
 function redirectToDetailsPage(type, id) {
     switch (type) {
-        case 'employee':
+        case 'Employee':
             displaySection('employeeContent');
             loadEmployeeData(); // Load employee data when the Employee section is displayed
             break;
-        case 'department':
+        case 'Department':
             displaySection('departmentContent');
             loadDepartmentData(); // Load department data when the Department section is displayed
             break;
-        case 'project':
+        case 'Project':
             displaySection('projectContent');
             loadProjectData(); // Load project data when the Project section is displayed
             break;
-        case 'task':
+        case 'Task':
             displaySection('taskContent');
             loadTaskData(); // Load task data when the Task section is displayed
             break;
