@@ -14,8 +14,19 @@
                 <h3>Group 9</h3>
                 <h6>Information Management System</h6>
             </div>
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button id="searchButton">Search</button>
+            <!-- search here -->
+            <div class ="search-box">
+
+                <div class = "search-row">
+                    <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
+                    <button id="searchButton">Search</button>
+                </div>
+
+            </div>
+            <div class="result-box" id="resultBox">
+                <!-- dynamic adding of search results -->
+    
+            </div>
             <ul class="list-unstyled components">
                 <li><a href="#" id="dashboardButton"><i class="fa-solid fa-chart-line" style="color: #ffffff;"></i> Dashboard</a></li>
                 <li><a href="#" id="employeeButton"><i class="fas fa-user"></i> Employee</a></li>
@@ -58,7 +69,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="SearchResults"></div> <!-- Container for search results -->
             </div>
             <div class="content" id="employeeContent" style="display: none;">
                 <div class="main-dashboard">
@@ -91,8 +101,8 @@
                             <tr>
                                 <th>Department ID</th>
                                 <th>Name</th>
-                                <th>Manager (Employee ID)</th>
-                                <th>Location (Building Number)</th>
+                                <th>Manager</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
                         <tbody id="departmentDataTable">
