@@ -12,6 +12,10 @@ body {
     font-family: Monaco, Consolas, monospace;
 }
 
+.content h3 {
+    padding-left: 5px;
+}
+
 .container {
     display: flex;
     width: 100%;
@@ -105,10 +109,6 @@ main {
     color: #E9ECEF; 
 }
 
-.main-dashboard {
-    margin-right: 20px;
-}
-
 .main-dashboard h1 {
     display: flex;
     justify-content: space-between;
@@ -166,9 +166,7 @@ main {
     background-color: #CED4DA; 
 }
 
-#addedDataTable tbody tr:nth-child(even) {
-    background-color: #495057; 
-}
+
 
 #addedDataTable tbody tr:hover {
     background-color: #6C757D; 
