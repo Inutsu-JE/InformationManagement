@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function searchData() {
-    let searchInputValue = document.getElementById('searchInput').value.trim();
+    const searchInputValue = document.getElementById('searchInput').value.trim();
 
     if (searchInputValue !== '') {
         const encodedSearchTerm = encodeURIComponent(searchInputValue);
@@ -31,13 +31,27 @@ function searchData() {
             })
             .then(data => {
                 console.log('Search results:', data);
+                const resultBox = document.getElementById('resultBox');
+                
+                resultBox.innerHTML = ''; // Clear previous results
+
                 if (data.length === 0) {
-                    alert('No results found.');
+                    resultBox.innerHTML = '<div class="result-item">No results found.</div>';
                 } else {
-                    // Assuming the first item has the ID
-                    const firstItem = data[0];
-                    const { type, id } = firstItem;
-                    redirectToDetailsPage(type, id); // Redirect to details page based on type and id
+                    data.forEach(item => {
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'result-item';
+                        resultItem.innerHTML = `Type: ${item.type}<br>ID: ${item.id}<br>Name: ${item.name}`;
+                        resultBox.appendChild(resultItem);
+                        resultItem.addEventListener('click', () => {
+                            redirectToDetailsPage(item.type);
+                            resultBox.style.display = 'none'; // Hide resultBox
+                            document.getElementById('searchInput').value = ''; // Clear search input value
+                        });
+                        
+                    });
+                    // Display the resultBox after adding results
+                    resultBox.style.display = 'block'; // Or 'flex' depending on your CSS
                 }
             })
             .catch(error => {
@@ -48,6 +62,8 @@ function searchData() {
         alert('Please enter a search term.');
     }
 }
+
+
 
 
 
@@ -117,7 +133,6 @@ async function displayTaskRowData(task_id) {
             <button id="hideButton" onclick="toggleRightPanel()">
                 <i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i>
             </button>
-            <h2>${rowData.employee || 'No Employee'}</h2>
             <h2>${rowData.description}</h2>
             <p><strong>Task ID:</strong> ${rowData.task_id}</p>
             <p><strong>Project ID:</strong> ${rowData.project_id}</p>
@@ -149,6 +164,7 @@ function insertTaskData() {
             <i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i>
         </button>
         <div class="form-container" id="addForm">
+            <h5>Add Task</h5>
             <label for="projectIdInput">Project ID:</label>
             <input type="text" id="projectIdInput" placeholder="Project ID">
             <label for="taskDescriptionInput">Description:</label>
@@ -374,7 +390,6 @@ async function displayProjectRowData(project_id) {
             <button id="hideButton" onclick="toggleRightPanel()">
                 <i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i>
             </button>
-            <h2>${rowData.employee || 'No Employee'}</h2>
             <h2>${rowData.name}</h2>
             <p><strong>Project ID:</strong> ${rowData.project_id}</p>
             <p><strong>Department ID:</strong> ${rowData.department_id}</p>
@@ -409,6 +424,7 @@ function insertProjectData() {
             <i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i>
         </button>
         <div class="form-container" id="addForm">
+            <h5>Add Project</h5>
             <label for="projectNameInput">Name:</label>
             <input type="text" id="projectNameInput" placeholder="Name">
             <label for="projectDepartmentIdInput">Department ID:</label>
@@ -650,6 +666,7 @@ function insertEmployeeData() {
             <i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i>
         </button>
         <div class="form-container" id="addForm">
+            <h5>Add Employee</h5>
             <input type="text" id="employeeNameInput" placeholder="Name">
             <input type="text" id="employeeDepartmentIdInput" placeholder="Department ID">
             <input type="text" id="employeePositionInput" placeholder="Position">
@@ -864,7 +881,7 @@ async function displayDepartmentRowData(department_id) {
             <h2>${rowData.name}</h2>
             <p><strong>Department ID:</strong> ${rowData.department_id}</p>
             <p><strong>Manager (Employee ID):</strong> ${rowData.manager_name}</p>
-            <p><strong>Location (Building Number):</strong> ${rowData.location}</p>
+            <p><strong>Location:</strong> ${rowData.location}</p>
             <div class="actions">
                 <button onclick="editDepartmentRow(${department_id})">Edit</button>
                 <button onclick="deleteDepartmentRow(${department_id})">Delete</button>
@@ -887,6 +904,7 @@ function insertDepartmentData() {
     document.getElementById('rightPanel').innerHTML = `
         <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></i></button>
         <div class="form-container" id="addForm">
+            <h5>Add Department</h5>
             <input type="text" id="departmentNameInput" placeholder="Name">
             <input type="text" id="departmentManagerInput" placeholder="Manager">
             <input type="text" id="departmentLocationInput" placeholder="Location (Building Number)">
@@ -1157,7 +1175,7 @@ async function loadData() {
             row.insertCell(2).innerText = item.type_id;
 
             // Add click event listener to each row
-            row.addEventListener('click', () => redirectToDetailsPage(item.type, item.type_id));
+            row.addEventListener('click', () => redirectToDetailsPage(item.type));
         });
 
         console.log("Data Loaded in reverse order");
@@ -1169,21 +1187,21 @@ async function loadData() {
 
 
 
-function redirectToDetailsPage(type, id) {
+function redirectToDetailsPage(type) {
     switch (type) {
-        case 'Employee':
+        case 'Employee'||'employee':
             displaySection('employeeContent');
             loadEmployeeData(); // Load employee data when the Employee section is displayed
             break;
-        case 'Department':
+        case 'Department'||'department':
             displaySection('departmentContent');
             loadDepartmentData(); // Load department data when the Department section is displayed
             break;
-        case 'Project':
+        case 'Project'||'project':
             displaySection('projectContent');
             loadProjectData(); // Load project data when the Project section is displayed
             break;
-        case 'Task':
+        case 'Task'||'task':
             displaySection('taskContent');
             loadTaskData(); // Load task data when the Task section is displayed
             break;

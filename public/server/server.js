@@ -485,13 +485,13 @@ app.get('/search/:searchTerm', (req, res) => {
 
     // SQL query to search across specified tables
     const query = `
-        SELECT 'department' AS type, department_id AS id, name, manager_name AS position FROM departments WHERE name LIKE ?
+        SELECT 'Department' AS type, department_id AS id, name, manager_name AS position FROM departments WHERE name LIKE ?
         UNION
-        SELECT 'employee' AS type, employee_id AS id, name, position FROM employees WHERE name LIKE ?
+        SELECT 'Employee' AS type, employee_id AS id, name, position FROM employees WHERE name LIKE ?
         UNION
-        SELECT 'project' AS type, project_id AS id, name, '' AS position FROM projects WHERE name LIKE ?
+        SELECT 'Project' AS type, project_id AS id, name, '' AS position FROM projects WHERE name LIKE ?
         UNION
-        SELECT 'task' AS type, task_id AS id, description AS name, 'task' AS position FROM tasks WHERE description LIKE ?
+        SELECT 'Task' AS type, task_id AS id, description AS name, 'task' AS position FROM tasks WHERE description LIKE ?
     `;
     const values = [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`];
 
