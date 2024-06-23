@@ -103,5 +103,5 @@ then enter
 
 node server.js
 
-now you can test the website
+now you can test the website -NOTE- admin admin is the user and pass of the site
 
