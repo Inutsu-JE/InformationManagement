@@ -34,9 +34,10 @@ function searchData() {
                 if (data.length === 0) {
                     alert('No results found.');
                 } else {
-                    // Redirect to details page based on the first item found
+                    // Assuming the first item has the ID
                     const firstItem = data[0];
-                    redirectToDetailsPage(firstItem.type, firstItem.id);
+                    const { type, id } = firstItem;
+                    redirectToDetailsPage(type, id); // Redirect to details page based on type and id
                 }
             })
             .catch(error => {
@@ -47,6 +48,7 @@ function searchData() {
         alert('Please enter a search term.');
     }
 }
+
 
 
 
@@ -199,7 +201,7 @@ async function saveTaskData() {
             const lastAddedTaskId = responseData.task_id; // Assuming the server responds with task_id
 
             // Display the last added task ID
-            displayAddedData(lastAddedTaskId);
+            displayAddedData(lastAddedTaskId,"Task");
 
             // Optionally, you can also reload all task data
             loadTaskData();
@@ -450,7 +452,7 @@ async function saveProjectData() {
             const lastAddedProjectId = responseData.project_id; // Assuming the server responds with project_id
 
             // Display the last added project ID
-            displayAddedData(lastAddedProjectId);
+            displayAddedData(lastAddedProjectId,"Project");
 
             // Optionally, you can also reload all project data
             loadProjectData();
@@ -752,7 +754,7 @@ async function saveEmployeeData() {
             const lastAddedEmployeeId = responseData.employee_id; // Assuming the server responds with employee_id
 
             // Display the last added employee ID
-            displayAddedData(lastAddedEmployeeId);
+            displayAddedData(lastAddedEmployeeId,"Employee");
 
             // Optionally, you can also reload all employee data
             loadEmployeeData();
@@ -831,7 +833,7 @@ async function loadDepartmentData() {
             let row = dataTable.insertRow();
             row.insertCell(0).innerText = item.department_id;
             row.insertCell(1).innerText = item.name;
-            row.insertCell(2).innerText = item.manager;
+            row.insertCell(2).innerText = item.manager_name;
             row.insertCell(3).innerText = item.location;
             // Add click event listener to each row
             row.addEventListener('click', () => displayDepartmentRowData(item.department_id));
@@ -856,7 +858,7 @@ async function displayDepartmentRowData(department_id) {
             <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></button>
             <h2>${rowData.name}</h2>
             <p><strong>Department ID:</strong> ${rowData.department_id}</p>
-            <p><strong>Manager (Employee ID):</strong> ${rowData.manager}</p>
+            <p><strong>Manager (Employee ID):</strong> ${rowData.manager_name}</p>
             <p><strong>Location (Building Number):</strong> ${rowData.location}</p>
             <div class="actions">
                 <button onclick="editDepartmentRow(${department_id})">Edit</button>
@@ -881,7 +883,7 @@ function insertDepartmentData() {
         <button id="hideButton" onclick="toggleRightPanel()"><i class="fa-solid fa-chevron-left fa-2xs" style="color: #333333;"></i></i></button>
         <div class="form-container" id="addForm">
             <input type="text" id="departmentNameInput" placeholder="Name">
-            <input type="text" id="departmentManagerInput" placeholder="Manager (Employee ID)">
+            <input type="text" id="departmentManagerInput" placeholder="Manager">
             <input type="text" id="departmentLocationInput" placeholder="Location (Building Number)">
             <button id="saveDepartmentButton" onclick="saveDepartmentData()">Save</button>
         </div>
@@ -907,7 +909,7 @@ async function editDepartmentRow(department_id) {
             <h2>Edit Department</h2>
             <form id="editDepartmentForm">
                 <input type="text" id="departmentNameInput" value="${rowData.name}">
-                <input type="text" id="departmentManagerInput" value="${rowData.manager}">
+                <input type="text" id="departmentManagerInput" value="${rowData.manager_name}">
                 <input type="text" id="departmentLocationInput" value="${rowData.location}">
                 <button type="button" onclick="saveEditedDepartmentData(${department_id})">Save</button>
             </form>
@@ -953,10 +955,10 @@ async function deleteDepartmentRow(department_id) {
 //done
 async function saveDepartmentData() {
     let name = document.getElementById('departmentNameInput').value;
-    let manager = document.getElementById('departmentManagerInput').value;
+    let manager_name = document.getElementById('departmentManagerInput').value;
     let location = document.getElementById('departmentLocationInput').value;
 
-    if (name && manager && location) {
+    if (name && manager_name && location) {
         try {
             const response = await fetch('http://localhost:3000/departments', {
                 method: 'POST',
@@ -965,7 +967,7 @@ async function saveDepartmentData() {
                 },
                 body: JSON.stringify({
                     name,
-                    manager,
+                    manager_name,
                     location,
                 }),
             });
@@ -976,7 +978,7 @@ async function saveDepartmentData() {
             const responseData = await response.json();
             const lastID = responseData.department_id; // Assuming the server responds with task_id
 
-            displayAddedData(lastID);
+            displayAddedData(lastID,"Department");
             // Optionally, you can also reload all department data
             loadDepartmentData();
 
@@ -999,17 +1001,17 @@ async function saveDepartmentData() {
 //done
 async function saveEditedDepartmentData(department_id) {
     let name = document.getElementById('departmentNameInput').value;
-    let manager = document.getElementById('departmentManagerInput').value;
+    let manager_name = document.getElementById('departmentManagerInput').value;
     let location = document.getElementById('departmentLocationInput').value;
 
-    if (name && manager && location) {
+    if (name && manager_name && location) {
         try {
             const response = await fetch(`http://localhost:3000/departments/${department_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({name, manager, location }),
+                body: JSON.stringify({name, manager_name, location }),
             });
 
             if (!response.ok) {
@@ -1095,8 +1097,7 @@ let nextNumberID = 1; // Initialize NumberID counter
 
 // Function to add data based on selected category
 // Example usage after adding new data
-async function displayAddedData(id) {
-    const category = document.getElementById('categorySelect').value;
+async function displayAddedData(id,category) {
 
     try {
         const response = await fetch('http://localhost:3000/data', {
