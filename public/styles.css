@@ -135,6 +135,42 @@ main {
     color: white;
     cursor: pointer;
 }
+.display-section {
+    width: 100%;
+}
+
+#addedDataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#addedDataTable, #addedDataTable th, #addedDataTable td {
+    border: 1px solid #ccc;
+}
+
+#addedDataTable th, #addedDataTable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+#addedDataTable th {
+    background-color: white;
+}
+
+#addedDataTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#addedDataTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
 
 .search-container button:hover {
     background-color: #575757;

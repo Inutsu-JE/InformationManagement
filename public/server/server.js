@@ -135,11 +135,11 @@ app.delete('/employees/:id', (req, res) => {
 
 // Create: Add a new department
 app.post('/departments', (req, res) => {
-    const { name, manager, location } = req.body;
+    const { name, manager_name, location } = req.body;
 
     // Example SQL query to insert department data into database
-    const sql = 'INSERT INTO departments (name, manager, location) VALUES (?, ?, ?)';
-    const values = [name, manager, location];
+    const sql = 'INSERT INTO departments (name, manager_name, location) VALUES (?, ?, ?)';
+    const values = [name, manager_name, location];
 
     // Execute the query
     connection.query(sql, values, (err, result) => {
@@ -160,6 +160,7 @@ app.post('/departments', (req, res) => {
 });
 
 
+
 // Read: Get all departments
 app.get('/departments', (req, res) => {
     const query = 'SELECT * FROM departments'; // Example SQL query to fetch departments
@@ -174,6 +175,7 @@ app.get('/departments', (req, res) => {
         res.json(results); // Send departments data as JSON response
     });
 });
+
 
 // Read: Get a single department by ID
 app.get('/departments/:id', (req, res) => {
@@ -194,11 +196,12 @@ app.get('/departments/:id', (req, res) => {
     });
 });
 
+
 // Update: Update an existing department
 app.put('/departments/:id', (req, res) => {
     const department_id = req.params.id;
-    const { name, manager, location } = req.body;
-    const departmentData = { name, manager, location };
+    const { name, manager_name, location } = req.body;
+    const departmentData = { name, manager_name, location };
 
     connection.query('UPDATE departments SET ? WHERE department_id = ?', [departmentData, department_id], (err, results) => {
         if (err) {
@@ -207,6 +210,7 @@ app.put('/departments/:id', (req, res) => {
         res.status(200).send(`Department with ID ${department_id} updated successfully`);
     });
 });
+
 
 // Delete: Delete an existing department
 app.delete('/departments/:id', (req, res) => {
@@ -219,6 +223,7 @@ app.delete('/departments/:id', (req, res) => {
         res.status(200).send(`Department with ID ${department_id} deleted successfully`);
     });
 });
+
 
 
 //Projects
@@ -477,19 +482,19 @@ app.delete('/data/:id', (req, res) => {
 // Define a search route to search across all relevant tables
 app.get('/search/:searchTerm', (req, res) => {
     const searchTerm = req.params.searchTerm;
-    
-    // Example SQL query to search across tables
+
+    // SQL query to search across specified tables
     const query = `
-        SELECT name, position, 'employee' AS type FROM employees WHERE name LIKE ?
+        SELECT 'department' AS type, department_id AS id, name, manager_name AS position FROM departments WHERE name LIKE ?
         UNION
-        SELECT name, manager AS position, 'department' AS type FROM departments WHERE name LIKE ?
+        SELECT 'employee' AS type, employee_id AS id, name, position FROM employees WHERE name LIKE ?
         UNION
-        SELECT name, '' AS position, 'project' AS type FROM projects WHERE name LIKE ?
+        SELECT 'project' AS type, project_id AS id, name, '' AS position FROM projects WHERE name LIKE ?
         UNION
-        SELECT description AS name, 'task' AS position, 'task' AS type FROM tasks WHERE description LIKE ?
+        SELECT 'task' AS type, task_id AS id, description AS name, 'task' AS position FROM tasks WHERE description LIKE ?
     `;
     const values = [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`];
-    
+
     // Execute the query
     connection.query(query, values, (error, results) => {
         if (error) {
@@ -500,3 +505,5 @@ app.get('/search/:searchTerm', (req, res) => {
         res.json(results); // Send search results as JSON response
     });
 });
+
+

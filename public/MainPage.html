@@ -29,20 +29,21 @@
         <main id="mainContent">
             <div class="content" id="dashboardContent">
                 <!-- Form for adding data -->
-                <div class="add-form">
-                    <h2>Add New Entry</h2>
-                    <select id="categorySelect">
-                        <option value="employee">Employee</option>
-                        <option value="department">Department</option>
-                        <option value="project">Project</option>
-                        <option value="task">Task</option>
-                    </select>
-                    <button onclick="insertData()">Add</button>
+                <div class="header">
+                    <h3>Recently added</h3>
+                    <div class="add-form">
+                        <select id="categorySelect">
+                            <option value="employee">Employee</option>
+                            <option value="department">Department</option>
+                            <option value="project">Project</option>
+                            <option value="task">Task</option>
+                        </select>
+                        <button onclick="insertData()">Add</button>
+                    </div>
                 </div>
-            
+                
                 <!-- Display section for added data -->
                 <div class="display-section">
-                    <h2>Added Data</h2>
                     <table id="addedDataTable">
                         <thead>
                             <tr>
