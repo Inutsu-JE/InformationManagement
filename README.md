@@ -3,7 +3,7 @@ Leader: Cartagenas
 
 Members:Epistola
         Ruedas
-        Serna
+        Sibayan
         Marasigan
 
 MIS FINAL PROJECT
