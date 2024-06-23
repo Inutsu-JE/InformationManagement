@@ -222,7 +222,7 @@ async function saveTaskData() {
             console.log('Task added successfully');
         } catch (error) {
             console.error('Error adding task:', error);
-            alert('Failed to add task. Please try again.');
+            alert('Failed to add task. Please check the Project ID and try again.');
         }
     } else {
         alert('Please fill in all fields.');
@@ -472,7 +472,7 @@ async function saveProjectData() {
             console.log('Project added successfully');
         } catch (error) {
             console.error('Error adding project:', error);
-            alert('Failed to add project. Please try again.');
+            alert('Failed to add project. Please check the Department ID and try again.');
         }
     } else {
         alert('Please fill in all fields.');
@@ -774,7 +774,7 @@ async function saveEmployeeData() {
             console.log('Employee added successfully');
         } catch (error) {
             console.error('Error adding employee:', error);
-            alert('Failed to add employee. Please try again.');
+            alert('Failed to add employee. Please check the department ID and try again.');
         }
     } else {
         alert('Please fill in all fields.');
