@@ -1,7 +1,7 @@
 GROUP 9
 Leader: Cartagenas
 
-Members:Espitola
+Members:Epistola
         Ruedas
         Serna
         Marasigan
