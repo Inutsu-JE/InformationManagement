@@ -1,9 +1,7 @@
-
-
 body {
     margin: 0;
-    font-family: Monaco, Consolas, monospace; /* Update font-family */
-    background-color: #f0f0f0;
+    font-family: Monaco, Consolas, monospace;
+    background-color: #F8F9FA;
     display: flex;
     height: 100vh;
     overflow: hidden;
@@ -23,8 +21,8 @@ body {
 
 nav#sidebar {
     width: 245px;
-    background: #333;
-    color: #fff;
+    background: #212529;
+    color: #F8F9FA;
     transition: all 0.3s;
     display: flex;
     flex-direction: column;
@@ -35,7 +33,7 @@ nav#sidebar {
     padding: 20px;
     text-align: center;
     font-size: 1.5em;
-    background: #707070;
+    background: #495057;
     width: 84%;
 }
 #sidebarSearchInput {
@@ -43,21 +41,21 @@ nav#sidebar {
     margin: 10px 15px;
     padding: 10px;
     border-radius: 5px;
-    border: 10px solid #ddd;
+    border: 1px solid #DEE2E6;
 }
 
 #sidebar button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #333;
-    color: white;
+    background-color: #212529;
+    color: #F8F9FA;
     cursor: pointer;
     margin: 10px 15px;
 }
 
 #sidebar button:hover {
-    background-color: #575757;
+    background-color: #343A40;
 }
 
 ul.components {
@@ -74,7 +72,7 @@ ul.components li {
 ul.components li a {
     padding: 15px;
     font-size: 1.1em;
-    color: #ddd;
+    color: #ADB5BD;
     display: block;
     text-decoration: none;
     width: 100%;
@@ -82,8 +80,8 @@ ul.components li a {
 }
 
 ul.components li a:hover {
-    background: #575757;
-    color: #fff;
+    background: #343A40;
+    color: #F8F9FA;
 }
 
 ul.components li input {
@@ -91,18 +89,20 @@ ul.components li input {
     margin: 10px 15px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #DEE2E6;
 }
 
 main {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background-color: #F1F2F6;
+    background-color: #E9ECEF;
 }
 
 .content {
     display: block;
+    background-color: #708090; 
+    color: #E9ECEF; 
 }
 
 .main-dashboard {
@@ -122,7 +122,7 @@ main {
 
 .search-container input {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #CED4DA;
     border-radius: 5px;
     width: 200px;
 }
@@ -131,10 +131,15 @@ main {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #333;
-    color: white;
+    background-color: #212529;
+    color: #F8F9FA;
     cursor: pointer;
 }
+
+.search-container button:hover {
+    background-color: #343A40;
+}
+
 .display-section {
     width: 100%;
 }
@@ -143,71 +148,63 @@ main {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0px;
-    background-color: white;
+    background-color: #CED4DA;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 #addedDataTable, #addedDataTable th, #addedDataTable td {
-    border: 1px solid #ccc;
+    border: 1px solid #6C757D; 
 }
 
 #addedDataTable th, #addedDataTable td {
     padding: 10px;
     text-align: left;
-    border: 1px solid #ccc;
+    color: #212529;
 }
 
 #addedDataTable th {
-    background-color: white;
+    background-color: #CED4DA; 
 }
 
 #addedDataTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #495057; 
 }
 
 #addedDataTable tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-
-
-
-.search-container button:hover {
-    background-color: #575757;
+    background-color: #6C757D; 
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0px;
-    background-color: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow added */
+    background-color: #CED4DA; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 table, th, td {
-    border: 1px solid #ccc;
+    border: 1px solid #6C757D; 
 }
 
 th, td {
     padding: 10px;
     text-align: left;
-    border: 1px solid #ccc; /* Ensure border consistency */
+    color: #212529; 
 }
 
 th {
-    background-color: white;
+    background-color: #CED4DA; 
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #CED4DA; 
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #6C757D; 
 }
 
 .right-panel {
-    /* From https://css.glass */
     background: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -221,7 +218,7 @@ tbody tr:hover {
 
     padding: 20px;
 
-    position: fixed; /* Fixed position to overlap the main container */
+    position: fixed; 
     top: 0;
     right: 0;
     transition: transform 1s ease;
@@ -239,7 +236,7 @@ tbody tr:hover {
     height: 30px;
     font-size: 18px;
     background-color: transparent;
-    color: #333;
+    color: #212529;
     border: none;
     cursor: pointer;
     z-index: 2;
@@ -247,15 +244,15 @@ tbody tr:hover {
 
 .right-panel .form-container {
     margin-top: 20px;
-    position: relative; /* Ensures the button is positioned relative to the container */
-    padding-bottom: 50px; /* Ensure there is enough space for the button */
+    position: relative; 
+    padding-bottom: 50px; 
 }
 
 .right-panel .form-container input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #CED4DA;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -263,80 +260,77 @@ tbody tr:hover {
 .right-panel .form-container button {
     position: absolute;
     bottom: 10px;
-    Right: 0px;
+    right: 0px;
     font-family: Raleway;
     font-weight: 100;
     font-size: 12px;
-    color: #000000;
-    background-color: #ffffff;
+    color: #212529;
+    background-color: #F8F9FA;
     padding: 10px 30px;
-    border: solid #8a8a8a 1px;
+    border: solid #ADB5BD 1px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     border-radius: 15px;
-    transition : 264ms;
-    transform: translateY(0);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-text-transform: uppercase;
-}
-
-.right-panel .form-container button:hover {
-    transition : 264ms;
-    padding: 10px 40px;
-    transform : translateY(-1px);
-    background-color: #333333;
-    color: #ffffff;
-    border: none;   
-}
-
-.form-container button:hover {
-    background-color: #575757;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    background-color: whitesmoke;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow added */
-}
-
-.button-container {
-    align-self: flex-end; /* Aligns the button to the right */
-    margin-top: 10px; /* Adds some space between the title and the button */
-}
-
-
-
-.insert-button {
-        font-family: Raleway;
-    font-weight: 100;
-    font-size: 10px;
-    color: #000000;
-    background-color: #ffffff;
-    padding: 8px 13px;
-    border: solid #8a8a8a 1px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-    border-radius: 13px 13px 0px 0px;
-    transition : 264ms;
+    transition: 264ms;
     transform: translateY(0);
     display: flex;
     flex-direction: row;
     align-items: center;
     cursor: pointer;
     text-transform: uppercase;
-  }
-  
-  .insert-button:hover {
-    transition : 434ms;
-    padding: 10px 20px;
-    transform : translateY(-2px);
-    background-color: #333333;
-    color: #ffffff;
+}
+
+.right-panel .form-container button:hover {
+    transition: 264ms;
+    padding: 10px 40px;
+    transform: translateY(-1px);
+    background-color: #212529;
+    color: #F8F9FA;
     border: none;
-  }
+}
+
+.form-container button:hover {
+    background-color: #343A40;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6C757D;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+.insert-button {
+    font-family: Raleway;
+    font-weight: 100;
+    font-size: 12px;
+    color: #212529;
+    background-color: #F8F9FA;
+    padding: 10px 30px;
+    border: solid #ADB5BD 1px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    border-radius: 12px;
+    transition: 264ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.insert-button:hover {
+    transition: 264ms;
+    padding: 10px 40px;
+    transform: translateY(-1px);
+    background-color: #212529;
+    color: #F8F9FA;
+    border: none;
+}
 
   
