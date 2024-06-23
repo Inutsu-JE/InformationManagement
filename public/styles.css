@@ -257,6 +257,8 @@ tbody tr:hover {
     box-sizing: border-box;
 }
 
+/*change here*/
+
 .right-panel .form-container button {
     position: absolute;
     bottom: 10px;

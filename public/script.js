@@ -158,7 +158,12 @@ function insertTaskData() {
             <label for="taskEndDateInput">End Date:</label>
             <input type="date" id="taskEndDateInput">
             <label for="taskStatusInput">Status:</label>
-            <input type="text" id="taskStatusInput" placeholder="Status">
+            
+            <select id="taskStatusInput">
+                <option value="Complete">Complete</option>
+                <option value="Incomplete">Incomplete</option>
+            </select>
+
             <button id="saveTaskButton" onclick="saveTaskData()">Save</button>
         </div>
     `;
